@@ -14,6 +14,7 @@ services:
       - ./database/data:/var/lib/mysql
     networks:
       - fullstack-challenge
+    command: --socket="/tmp/mysql.sock"
 
   frontend:
     build:
