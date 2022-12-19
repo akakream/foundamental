@@ -12,6 +12,9 @@ services:
       - "3306:3306"
     volumes:
       - ./database/data:/var/lib/mysql
+      - ./data/challenge_companies.csv:/var/lib/mysql-files/challenge_companies.csv
+      - ./data/challenge_deals.csv:/var/lib/mysql-files/challenge_deals.csv
+      - ./data/CREATETABLES.sql:/CREATETABLES.sql
     networks:
       - fullstack-challenge
     command: --socket="/var/lib/mysql/mysql.sock"
