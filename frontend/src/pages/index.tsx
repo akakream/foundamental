@@ -2,8 +2,28 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import { useEffect, useState } from "react";
+
+const fetchCompanies = () => {
+  return fetch("http://localhost:20002/companies")
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(res);
+      return JSON.stringify(res);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
 
 const Home: NextPage = () => {
+  const [companies, setCompanies] = useState("");
+  useEffect(() => {
+    fetchCompanies().then((result) => {
+      setCompanies(result || "");
+    });
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,7 +33,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <div></div>
+        <pre>{companies}</pre>
       </main>
 
       <footer className={styles.footer}>
