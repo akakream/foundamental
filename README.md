@@ -1,3 +1,11 @@
+# Cavaet
+
+In the given project, mysql database was not running correctly. So I did a couple of changes.
+
+To create the necessary tables in the database run `data/CREATETABLES.sql` in Mysql database.
+
+To see the result go to `http://localhost:3000/`
+
 # Fullstack Challenge
 
 Welcome to our fullstack challenge! :wave:
