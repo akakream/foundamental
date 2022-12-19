@@ -8,7 +8,7 @@ const fetchCompanies = () => {
     .then((res) => res.json())
     .then((res) => {
       console.log(res);
-      return JSON.stringify(res);
+      return res;
     })
     .catch((err) => {
       console.error(err);
@@ -16,10 +16,10 @@ const fetchCompanies = () => {
 };
 
 const Home: NextPage = () => {
-  const [companies, setCompanies] = useState("");
+  const [companies, setCompanies] = useState(null);
   useEffect(() => {
     fetchCompanies().then((result) => {
-      setCompanies(result || "");
+      if (result) setCompanies(result);
     });
   }, []);
 
@@ -32,7 +32,23 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <div>{companies}</div>
+        <div>
+          {companies ? (
+            <div>
+              {Object.keys(companies).map((index) => (
+                <p key={index}>
+                  <span>{JSON.stringify(companies[index]["Company"])}</span>
+                  <br />
+                  <span>{JSON.stringify(companies[index]["Deals"])}</span>
+                  <br />
+                  <br />
+                </p>
+              ))}
+            </div>
+          ) : (
+            <div></div>
+          )}
+        </div>
       </main>
     </div>
   );
